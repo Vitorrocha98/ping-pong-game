@@ -3,9 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Jogo Ping-Pong</title>
+    <style>
+        * {
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </head>
 <body>
-    
+    <canvas></canvas>
+    <script>
+        const canvasElem = document.querySelector("canvas"),
+            canvasContext = canvasElem.getContext("2d");
+
+        function setup(){
+            canvasElem.width = canvasContext.width = window.innerWidth;
+            canvasElem.height = canvasContext.height = window.innerHeight;
+        }
+
+        function draw(){
+            canvasContext.fillStyle = "#286047";
+            canvasContext.fillRect(0, 0, window.innerWidth, window.innerHeight);
+        }
+
+        setup();
+        draw();
+    </script>
 </body>
 </html>
