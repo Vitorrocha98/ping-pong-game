@@ -18,14 +18,38 @@
         const canvasElem = document.querySelector("canvas"),
             canvasContext = canvasElem.getContext("2d");
 
+        const lineWidth = 15;
+
         function setup(){
             canvasElem.width = canvasContext.width = window.innerWidth;
             canvasElem.height = canvasContext.height = window.innerHeight;
         }
 
         function draw(){
+            // draw the field
             canvasContext.fillStyle = "#286047";
             canvasContext.fillRect(0, 0, window.innerWidth, window.innerHeight);
+
+            canvasContext.fillStyle = "#ffffff";
+
+            // draw the center line
+            canvasContext.fillRect(
+                window.innerWidth / 2 - lineWidth / 2, 
+                0, 
+                lineWidth, 
+                window.innerHeight
+            );
+
+            // draw the left racket
+            canvasContext.fillRect(10, 100, lineWidth, 200);
+
+            // draw the right racket
+            canvasContext.fillRect(
+                window.innerWidth - lineWidth - 10,
+                200,
+                lineWidth,
+                200
+            );
         }
 
         setup();
