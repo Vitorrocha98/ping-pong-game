@@ -50,6 +50,11 @@
                 lineWidth,
                 200
             );
+
+            // draw the ball
+            canvasContext.beginPath()
+            canvasContext.arc(200, 200, 20, 0, 2 * Math.PI, false);
+            canvasContext.fill()
         }
 
         setup();
