@@ -20,12 +20,23 @@
 
         const lineWidth = 15;
 
+        // field object
         const field = {
             w: window.innerWidth,
             h: window.innerHeight,
             draw: function(){
                 canvasContext.fillStyle = "#286047";
-                canvasContext.fillRect(0, 0, window.innerWidth, window.innerHeight);
+                canvasContext.fillRect(0, 0, this.w, this.h);
+            }
+        }
+
+        // line object
+        const line = {
+            w: 15,
+            h: field.h,
+            draw: function(){
+                canvasContext.fillStyle = "#ffffff";
+                canvasContext.fillRect(field.w / 2 - this.w / 2, 0, this.w, this.h);
             }
         }
 
@@ -38,15 +49,8 @@
             // draw the field
             field.draw();
 
-            canvasContext.fillStyle = "#ffffff";
-
             // draw the center line
-            canvasContext.fillRect(
-                window.innerWidth / 2 - lineWidth / 2, 
-                0, 
-                lineWidth, 
-                window.innerHeight
-            );
+            line.draw();
 
             // draw the left racket
             canvasContext.fillRect(10, 100, lineWidth, 200);
