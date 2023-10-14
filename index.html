@@ -20,15 +20,23 @@
 
         const lineWidth = 15;
 
+        const field = {
+            w: window.innerWidth,
+            h: window.innerHeight,
+            draw: function(){
+                canvasContext.fillStyle = "#286047";
+                canvasContext.fillRect(0, 0, window.innerWidth, window.innerHeight);
+            }
+        }
+
         function setup(){
-            canvasElem.width = canvasContext.width = window.innerWidth;
-            canvasElem.height = canvasContext.height = window.innerHeight;
+            canvasElem.width = canvasContext.width = field.w;
+            canvasElem.height = canvasContext.height = field.h;
         }
 
         function draw(){
             // draw the field
-            canvasContext.fillStyle = "#286047";
-            canvasContext.fillRect(0, 0, window.innerWidth, window.innerHeight);
+            field.draw();
 
             canvasContext.fillStyle = "#ffffff";
 
