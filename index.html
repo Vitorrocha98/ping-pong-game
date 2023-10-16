@@ -102,6 +102,16 @@
             directionX: 1,
             directionY: 1,
             _calcPosition: function(){
+                if(this.x > field.w - this.r - rightRacket.w - gapX){
+                    if(this.y + this.r > rightRacket.y && this.y - this.r < rightRacket.y + rightRacket.h){
+                        this._reverseX();
+                    }
+                    else{
+                        score.increaseHuman();
+                        this._pointUp();
+                    }
+                }
+
                 // check the top and bottom sides of the field
                 if((this.y - this.r < 0 && this.directionY < 0) || (this.y > field.h - this.r && this.directionY > 0))
                     // reverse the direction of the ball
