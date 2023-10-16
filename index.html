@@ -63,9 +63,22 @@
             }
         }
 
+        const score = {
+            human: 1,
+            computer: 2,
+            draw: function(){
+                canvasContext.font = "bold 72px Arial"
+                canvasContext.textAlign = "center"
+                canvasContext.textBaseline = "top"
+                canvasContext.fillStyle = "#01341D"
+                canvasContext.fillText(this.human, field.w / 4, 50)
+                canvasContext.fillText(this.computer, field.w / 4 + field.w / 2, 50)
+            }
+        }
+
         const ball = {
-            x: 300,
-            y: 200,
+            x: 250,
+            y: 120,
             r: 20,
             draw: function(){
                 canvasContext.fillStyle = "#ffffff";
@@ -94,17 +107,11 @@
             // draw the right racket
             rightRacket.draw();
 
+            // draw the score
+            score.draw();
+            
             // draw the ball
             ball.draw();
-
-            // draw the score
-            canvasContext.font = "bold 72px Arial"
-            canvasContext.textAlign = "center"
-            canvasContext.textBaseline = "top"
-            canvasContext.fillStyle = "#01341D"
-            canvasContext.fillText("3", window.innerWidth / 4, 50)
-            canvasContext.fillText("1",  window.innerWidth / 4 +  window.innerWidth / 2, 50)
-
         }
 
         setup();
