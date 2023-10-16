@@ -19,6 +19,7 @@
             canvasContext = canvasElem.getContext("2d"),
             gapX = 10;
 
+        // mouse object
         const mouse = {
             x: 0, 
             y: 0
@@ -44,6 +45,7 @@
             }
         }
 
+        // left racket object
         const leftRacket = {
             x: gapX,
             y: 0,
@@ -60,6 +62,7 @@
             }
         }
 
+        // right racket object
         const rightRacket = {
             x: field.w - line.w - gapX,
             y: 100,
@@ -76,6 +79,7 @@
             }
         }
 
+        // score object
         const score = {
             human: 1,
             computer: 2,
@@ -89,14 +93,29 @@
             }
         }
 
+        // ball object
         const ball = {
-            x: 250,
-            y: 120,
+            x: 0,
+            y: 0,
             r: 20,
             speed: 5,
+            directionX: 1,
+            directionY: 1,
+            _calcPosition: function(){
+                // check the top and bottom sides of the field
+                if((this.y - this.r < 0 && this.directionY < 0) || (this.y > field.h - this.r && this.directionY > 0))
+                    // reverse the direction of the ball
+                    this._reverseY()
+            },
+            _reverseX: function(){
+                this.directionX *= -1;
+            },
+            _reverseY: function(){
+                this.directionY *= -1;
+            },
             _move: function(){
-                this.x += 1 * this.speed;
-                this.y += 1 * this.speed;
+                this.x += this.directionX * this.speed;
+                this.y += this.directionY * this.speed;
             },
             draw: function(){
                 canvasContext.fillStyle = "#ffffff";
@@ -104,10 +123,10 @@
                 canvasContext.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
                 canvasContext.fill();
 
+                this._calcPosition();
                 this._move();
             }
         }
-
 
         function setup(){
             canvasElem.width = canvasContext.width = field.w;
