@@ -63,6 +63,19 @@
             }
         }
 
+        const ball = {
+            x: 300,
+            y: 200,
+            r: 20,
+            draw: function(){
+                canvasContext.fillStyle = "#ffffff";
+                canvasContext.beginPath()
+                canvasContext.arc(this.x, this.y, this.r, 0, 2 * Math.PI, false);
+                canvasContext.fill()
+            }
+        }
+
+
         function setup(){
             canvasElem.width = canvasContext.width = field.w;
             canvasElem.height = canvasContext.height = field.h;
@@ -82,9 +95,7 @@
             rightRacket.draw();
 
             // draw the ball
-            canvasContext.beginPath()
-            canvasContext.arc(200, 200, 20, 0, 2 * Math.PI, false);
-            canvasContext.fill()
+            ball.draw();
 
             // draw the score
             canvasContext.font = "bold 72px Arial"
