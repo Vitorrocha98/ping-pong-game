@@ -16,7 +16,8 @@
     <canvas></canvas>
     <script>
         const canvasElem = document.querySelector("canvas"),
-            canvasContext = canvasElem.getContext("2d");
+            canvasContext = canvasElem.getContext("2d"),
+            gapX = 10;
 
         const lineWidth = 15;
 
@@ -40,6 +41,28 @@
             }
         }
 
+        const leftRacket = {
+            x: gapX,
+            y: 100,
+            w: line.w,
+            h: 200,
+            draw: function(){
+                canvasContext.fillStyle = "#ffffff";
+                canvasContext.fillRect(this.x, this.y, this.w, this.h);
+            }
+        }
+
+        const rightRacket = {
+            x: field.w - line.w - gapX,
+            y: 100,
+            w: line.w,
+            h: 200,
+            draw: function(){
+                canvasContext.fillStyle = "#ffffff";
+                canvasContext.fillRect(this.x, this.y, this.w, this.h);
+            }
+        }
+
         function setup(){
             canvasElem.width = canvasContext.width = field.w;
             canvasElem.height = canvasContext.height = field.h;
@@ -53,15 +76,10 @@
             line.draw();
 
             // draw the left racket
-            canvasContext.fillRect(10, 100, lineWidth, 200);
+            leftRacket.draw();
 
             // draw the right racket
-            canvasContext.fillRect(
-                window.innerWidth - lineWidth - 10,
-                200,
-                lineWidth,
-                200
-            );
+            rightRacket.draw();
 
             // draw the ball
             canvasContext.beginPath()
