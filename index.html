@@ -83,6 +83,12 @@
         const score = {
             human: 1,
             computer: 2,
+            increaseHuman: function(){
+                this.human++;
+            },
+            increaseComputer: function(){
+                this.computer++;
+            },
             draw: function(){
                 canvasContext.font = "bold 72px Arial"
                 canvasContext.textAlign = "center"
@@ -122,6 +128,10 @@
             },
             _reverseY: function(){
                 this.directionY *= -1;
+            },
+            _pointUp: function(){
+                this.x = field.w / 2;
+                this.y = field.h / 2;
             },
             _move: function(){
                 this.x += this.directionX * this.speed;
