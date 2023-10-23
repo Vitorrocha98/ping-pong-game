@@ -108,12 +108,24 @@
             directionX: 1,
             directionY: 1,
             _calcPosition: function(){
+                // player 1 scoring rule
                 if(this.x > field.w - this.r - rightRacket.w - gapX){
                     if(this.y + this.r > rightRacket.y && this.y - this.r < rightRacket.y + rightRacket.h){
                         this._reverseX();
                     }
                     else{
                         score.increaseHuman();
+                        this._pointUp();
+                    }
+                }
+
+                // player 2 scoring rule
+                if(this.x < 0){
+                    if(this.y + this.r > leftRacket.y && this.y - this.r < leftRacket.y + leftRacket.h){
+                        this._reverseX();
+                    }
+                    else{
+                        score.increaseComputer();
                         this._pointUp();
                     }
                 }
