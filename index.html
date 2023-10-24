@@ -68,8 +68,17 @@
             y: 100,
             w: line.w,
             h: 200,
+            speed: 5,
             _move: function(){
-                this.y = ball.y;
+                if(this.y + this.h / 2 < ball.y + ball.r){
+                    this.y += this.speed;
+                }
+                else{
+                    this.y -= this.speed;
+                }
+            },
+            speedUp: function(){
+                this.speed += 2;
             },
             draw: function(){
                 canvasContext.fillStyle = "#ffffff";
@@ -81,8 +90,8 @@
 
         // score object
         const score = {
-            human: 1,
-            computer: 2,
+            human: 0,
+            computer: 0,
             increaseHuman: function(){
                 this.human++;
             },
@@ -142,10 +151,11 @@
                 this.directionY *= -1;
             },
             _speedUP: function(){
-                this.speed += 3;
+                this.speed += 2;
             },
             _pointUp: function(){
                 this._speedUP();
+                rightRacket.speedUp();
 
                 this.x = field.w / 2;
                 this.y = field.h / 2;
