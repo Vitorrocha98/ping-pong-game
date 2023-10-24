@@ -141,7 +141,12 @@
             _reverseY: function(){
                 this.directionY *= -1;
             },
+            _speedUP: function(){
+                this.speed += 3;
+            },
             _pointUp: function(){
+                this._speedUP();
+
                 this.x = field.w / 2;
                 this.y = field.h / 2;
             },
