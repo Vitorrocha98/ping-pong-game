@@ -59,16 +59,16 @@
                 canvasContext.fillRect(this.x, this.y, this.w, this.h);
 
                 this._move();
-            }
+            },
         }
 
         // right racket object
         const rightRacket = {
             x: field.w - line.w - gapX,
-            y: 100,
+            y: 0,
             w: line.w,
             h: 200,
-            speed: 5,
+            speed: 2,
             _move: function(){
                 if(this.y + this.h / 2 < ball.y + ball.r){
                     this.y += this.speed;
@@ -85,7 +85,7 @@
                 canvasContext.fillRect(this.x, this.y, this.w, this.h);
 
                 this._move();
-            }
+            },
         }
 
         // score object
@@ -105,15 +105,15 @@
                 canvasContext.fillStyle = "#01341D"
                 canvasContext.fillText(this.human, field.w / 4, 50)
                 canvasContext.fillText(this.computer, field.w / 4 + field.w / 2, 50)
-            }
+            },
         }
 
         // ball object
         const ball = {
-            x: 0,
-            y: 0,
+            x: field.w / 2,
+            y: field.h / 2,
             r: 20,
-            speed: 5,
+            speed: 6,
             directionX: 1,
             directionY: 1,
             _calcPosition: function(){
@@ -140,9 +140,10 @@
                 }
 
                 // check the top and bottom sides of the field
-                if((this.y - this.r < 0 && this.directionY < 0) || (this.y > field.h - this.r && this.directionY > 0))
+                if((this.y - this.r < 0 && this.directionY < 0) || (this.y > field.h - this.r && this.directionY > 0)){
                     // reverse the direction of the ball
                     this._reverseY()
+                }
             },
             _reverseX: function(){
                 this.directionX *= -1;
@@ -150,11 +151,11 @@
             _reverseY: function(){
                 this.directionY *= -1;
             },
-            _speedUP: function(){
+            _speedUp: function(){
                 this.speed += 2;
             },
             _pointUp: function(){
-                this._speedUP();
+                this._speedUp();
                 rightRacket.speedUp();
 
                 this.x = field.w / 2;
