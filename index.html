@@ -120,7 +120,7 @@
                 }
 
                 // player 2 scoring rule
-                if(this.x < 0){
+                if(this.x < this.r + leftRacket.w + gapX){
                     if(this.y + this.r > leftRacket.y && this.y - this.r < leftRacket.y + leftRacket.h){
                         this._reverseX();
                     }
